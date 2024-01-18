@@ -20,6 +20,11 @@ export default class ProductManager {
         return products.find(products => products.id === id)
     }
 
+    existsCodeProduct = async (code) => {
+        let products = await this.readProducts()
+        return  products.find(products => products.code === code)
+    }
+
     getLimitProduct = async (limit) =>{
         let get_limit_product = await this.readProducts()
         return get_limit_product.slice(0,limit)
@@ -29,6 +34,8 @@ export default class ProductManager {
         let productsOld = await this.readProducts()
         product.status = true
         product.id = nanoid(4)
+        let existsCode = await this.existsCodeProduct(product.code)
+        if(existsCode) return `The code ${product.code} is repeated`
         let productsAll = [...productsOld, product]
         await this.writeProducts(productsAll)
         return "Added product"
@@ -64,45 +71,4 @@ export default class ProductManager {
         }
         return "Non-existent product to be eliminated"
     }
-
-    /*
-    addProduct = async (title, description, code, price, status, stock, category, thumbnail) => {
-
-        ProductManager.id++
-
-        let newProduct = {
-            title, 
-            description,
-            code,
-            price, 
-            status : true,
-            stock,
-            category,
-            thumbnail, 
-            id: ProductManager.id
-        }
-
-        this.products.push(newProduct)
-        await fs.writeFile(this.patch, JSON.stringify(this.products))
-
-        /*
-        for (let i = 0; i < this.products.length; i++) {
-            if(this.products[i].code === code){
-                console.log(`El codigo ${code} esta repetido`);
-                return;
-            }
-        }
-        
-        if (!Object.values(newProduct).includes(undefined)) {
-            ProductManager.id++
-                this.products.push({
-                    ...newProduct,
-                    id: ProductManager.id 
-                });
-        }else{
-            console.log("Todos los campos son Requeridos")
-        }
-
-        return "Producto Agregado"
-    }*/
 }
