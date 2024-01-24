@@ -1,0 +1,8 @@
+<h1>Products List</h1>
+<a href="/realtimeproducts">Real time Products list</a>
+{{#each products}}
+    <h2>{{this.title}}</h2>
+    <h3>{{this.description}}</h3>
+    <p>${{this.price}}</p>
+    <img src={{this.thumbnail}} alt="">
+{{/each}}
