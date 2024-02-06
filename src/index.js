@@ -2,6 +2,7 @@ import express from "express"
 import { engine } from "express-handlebars"
 import * as path from "path"
 import { Server } from "socket.io";
+import http from "http"
 
 import ProductRouter from "./routes/products.routes.js"
 import ProductManager from "./components/ProductManager.js";
@@ -13,11 +14,12 @@ const product = new ProductManager()
 
 const app = express()
 const PORT = 8080
-const httpServer = app.listen(PORT, () =>
-    console.log(`Server working in port ${PORT}`)
-)
+const httpServer = http.createServer(app)
+const io = new Server(httpServer)
 
-const socketServer = new Server(httpServer)
+httpServer.listen(PORT, () => {
+    console.log(`App running at port ${PORT}`)
+})
 
 //Middlewares
 app.use(express.json())
@@ -36,7 +38,18 @@ app.use("/api/products", ProductRouter);
 app.use('/api/cart', CartRouter);
 
 //Socket.io
-socketServer.on("connection", (socket) => {
-    console.log("Un cliente se ha conectado");
-    socket.emit("recibirProductos", product.getProduct());
+io.on("connection", (socket) => {
+    console.log("Client connected");
+
+    // socket.on('event', function)
+
+    socket.on("disconnect", () => {
+        console.log("A user disconnected")
+    })
+
+    socket.on("message", (msg) => {
+        io.emit("message", msg)
+    })
+
+    //socket.emit("recibirProductos", product.getProduct());
   });
