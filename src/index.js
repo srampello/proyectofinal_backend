@@ -1,7 +1,7 @@
 import express from "express"
 import { engine } from "express-handlebars"
 import * as path from "path"
-import { Server } from "socket.io";
+import { Server } from "socket.io"
 import http from "http"
 
 import ProductRouter from "./routes/products.routes.js"
@@ -38,8 +38,10 @@ app.use("/api/products", ProductRouter);
 app.use('/api/cart', CartRouter);
 
 //Socket.io
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
     console.log("Client connected");
+
+    socket.emit("server:products", await ProductManager.readProducts())
 
     // socket.on('event', function)
 

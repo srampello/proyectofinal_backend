@@ -1,12 +1,12 @@
 const socket = io();
 
-const listContainer = document.getElementById('listContainer')
+const renderProducts = async (products)=>{
+    const res = await fetch("./views/productTemplate.ejs");
+    const template = await res.text();
+    const html = ejs.render(template, {products});
+    document.getElementById("listContainer").innerHTML = html;
+}
 
-socket.on('recibirProductos', (data) => {
-    listContainer.innerHTML = "",
-    listContainer.innerHTML += data.map
-    ((product) =>{
-        return `<td><p>${product.title}</p></td>
-        <td><img src=${product.thumbnail} alt=${product.title} style="height: 50px; width: 50px"/>`
-    }).join("")
+socket.on('server:products', (data) => {
+    renderProducts(data.products)
 })
