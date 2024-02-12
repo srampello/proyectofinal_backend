@@ -1,0 +1,363 @@
+[{
+  "_id": {
+    "$oid": "65c4ddd3b55dc69473b009c1"
+  },
+  "price": 173,
+  "name": "Campus 00s Korn",
+  "alt": "00_korn",
+  "category": "sneaker",
+  "brand": "Adidas",
+  "image": "https://i.ibb.co/N16kt5W/adidas-originals-x-korn-campus-00s.png"
+},
+{
+  "_id": {
+    "$oid": "65c4de18b55dc69473b009c2"
+  },
+  "price": 182,
+  "name": "4 Retro Red Cement",
+  "alt": "4_redcement",
+  "category": "sneaker",
+  "brand": "Jordan",
+  "image": "https://i.ibb.co/wJ8x2qV/retro4redcement.png"
+},
+{
+  "_id": {
+    "$oid": "65c4debfb55dc69473b009c3"
+  },
+  "price": 83,
+  "name": "Dunk Low Grey Fog",
+  "alt": "dunk_greyfog",
+  "category": "sneaker",
+  "brand": "Nike",
+  "image": "https://i.ibb.co/zWgtCH3/Nike-Dunk-Low-Grey-Fog.png"
+},
+{
+  "_id": {
+    "$oid": "65c4ded2b55dc69473b009c4"
+  },
+  "price": 331,
+  "name": "500 Utility Black",
+  "category": "sneaker",
+  "brand": "Yeezy",
+  "image": "https://i.ibb.co/hyhHFhL/500utilityblack.png",
+  "alt": "500_utility_black"
+},
+{
+  "_id": {
+    "$oid": "65c4dfecb55dc69473b009c6"
+  },
+  "price": 176,
+  "name": "3 Retro Wizards",
+  "alt": "retro_3_wizards",
+  "category": "sneaker",
+  "brand": "Jordan",
+  "image": "https://i.ibb.co/2WPXxzM/air-jordan-3-wizards.png"
+},
+{
+  "_id": {
+    "$oid": "65c4dff7b55dc69473b009c7"
+  },
+  "image": "https://i.ibb.co/4PX7Xg5/yeezy-sllide-slate-grey.png",
+  "price": 66,
+  "name": "Slide Slate Grey",
+  "alt": "yeezy_slide_slate_grey",
+  "category": "sneaker",
+  "brand": "Yeezy"
+},
+{
+  "_id": {
+    "$oid": "65c4e012b55dc69473b009c8"
+  },
+  "price": 433,
+  "name": "1 Retro Low OG SP Travis Scott Black Phantom",
+  "alt": "1_retro_low_sp_ts_bp",
+  "category": "sneaker",
+  "brand": "Jordan",
+  "image": "https://i.ibb.co/6RWsfnQ/travis-scott-x-air-jordan-1-low-og-sp-black-phantom.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e01fb55dc69473b009c9"
+  },
+  "price": 191,
+  "name": "4 Retro Frozen Moments (Women's)",
+  "alt": "4_retro_forzen_moments",
+  "category": "sneaker",
+  "brand": "Jordan",
+  "image": "https://i.ibb.co/S7X74G8/retro4frozenmoments.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e031b55dc69473b009ca"
+  },
+  "price": 155,
+  "name": "700 V3 Azael",
+  "alt": "700_v3_azael",
+  "category": "sneaker",
+  "brand": "Yeezy",
+  "image": "https://i.ibb.co/2F5hh4d/YEEZY-700-V3-AZAEL.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e04bb55dc69473b009cb"
+  },
+  "price": 416,
+  "name": "4 Retro University Blue",
+  "alt": "4_retro_ub",
+  "category": "sneaker",
+  "brand": "Jordan",
+  "image": "https://i.ibb.co/4TcMbrP/4-Retro-University-Blue.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e109b55dc69473b009cc"
+  },
+  "price": 119,
+  "name": "Foam RNR Onyx",
+  "alt": "foam_onyx",
+  "category": "sneaker",
+  "brand": "Yeezy",
+  "image": "https://i.ibb.co/VVvW96P/foam-rnr-onyx.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e166b55dc69473b009cd"
+  },
+  "name": "1 Retro High Dark Mocha",
+  "brand": "Jordan",
+  "alt": "1_retro_high_dark_mocha",
+  "category": "sneaker",
+  "price": 339,
+  "image": "https://i.ibb.co/sbwn6Xb/air-jordan-1-retro-high-og-dark-mocha.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e175b55dc69473b009ce"
+  },
+  "name": "Dunk Low Cacao Wow (Women's)",
+  "alt": "dunk_low_cacao_w",
+  "category": "sneaker",
+  "brand": "Nike",
+  "price": 76,
+  "image": "https://i.ibb.co/sP3R8qj/Dunk-Low-Cacao-Wow-Women-s.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e188b55dc69473b009cf"
+  },
+  "price": 227,
+  "name": "Boost 350 V2 Onyx",
+  "alt": "350_v2_onyx",
+  "category": "sneaker",
+  "brand": "Yeezy",
+  "image": "https://i.ibb.co/yfKVdKv/yeezy-boost-350-v2-onyx.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e1abb55dc69473b009d0"
+  },
+  "price": 124,
+  "name": "Air Foce 1 Low Supreme White",
+  "alt": "air_force_1_supreme",
+  "category": "sneaker",
+  "brand": "Nike",
+  "image": "https://i.ibb.co/PNnWqq6/Air-Foce-1-Low-Supreme-White.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e1c9b55dc69473b009d1"
+  },
+  "price": 152,
+  "name": "5 Retro UNC University Blue",
+  "alt": "5_retro_unc",
+  "brand": "Jordan",
+  "image": "https://i.ibb.co/thx6Q7v/jordan-5-retro-unc-university-blueb.png",
+  "category": "sneaker"
+},
+{
+  "_id": {
+    "$oid": "65c4e323b55dc69473b009d2"
+  },
+  "name": "Air Force 1 Low '07 White",
+  "alt": "air_force_1_white",
+  "category": "sneaker",
+  "brand": "Nike",
+  "price": 74,
+  "image": "https://i.ibb.co/b3pYkG3/Air-Force-1-Low-07-White.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e416b55dc69473b009d3"
+  },
+  "image": "https://i.ibb.co/hCq9fPh/air-jordan-3-desert-elephant.png",
+  "price": 127,
+  "name": "3 Retro Desert Elephants",
+  "alt": "3_desert",
+  "category": "sneaker",
+  "brand": "Jordan"
+},
+{
+  "_id": {
+    "$oid": "65c4e4cab55dc69473b009d4"
+  },
+  "price": 203,
+  "name": "4 Retro Thunder",
+  "alt": "retro_4_thunder",
+  "category": "sneaker",
+  "brand": "Jordan",
+  "image": "https://i.ibb.co/7Jrx0xr/4-Retro-Thunderb.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e4ddb55dc69473b009d5"
+  },
+  "price": 100,
+  "name": "Dunk Low Retro White Black Panda",
+  "alt": "shoe_panda",
+  "category": "sneaker",
+  "brand": "Nike",
+  "image": "https://i.ibb.co/64rJDG3/nike-panda.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e4efb55dc69473b009d6"
+  },
+  "price": 1224,
+  "name": "Dunk Low Ben & Jerry's Chunky Dunky",
+  "alt": "dunk_low_ben&jerry",
+  "category": "sneaker",
+  "brand": "Nike",
+  "image": "https://i.ibb.co/c2vJL9F/Dunk-Low-Ben-Jerrys-Chunky-Dunkyb.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e4ffb55dc69473b009d7"
+  },
+  "price": 272,
+  "name": "CPFM Air Flea 2 Cactur Plant",
+  "alt": "cpfm_air_flea_2",
+  "category": "sneaker",
+  "brand": "Nike",
+  "image": "https://i.ibb.co/8c2mkVv/Cactus-Plant-Flea-Market-x-Nike-Air-Flea-2b.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e512b55dc69473b009d8"
+  },
+  "price": 237,
+  "name": "Boost 350 V2 Zebra",
+  "alt": "350_zebra",
+  "category": "sneaker",
+  "brand": "Yeezy",
+  "image": "https://i.ibb.co/RHw8kcX/Yeezy-Boost-350-V2-Zebrab.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e524b55dc69473b009d9"
+  },
+  "price": 650,
+  "name": "1 Retro Low Golf Travis Scott Neutral Olive",
+  "alt": "1_retro_golf_ts_no",
+  "category": "sneaker",
+  "brand": "Jordan",
+  "image": "https://i.ibb.co/khPR7kG/air-jordan-1-low-golf.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e579b55dc69473b009da"
+  },
+  "image": "https://i.ibb.co/bN5WZ5D/air-jordan-1-high-og-royal-reimagined.png",
+  "price": 157,
+  "name": "1 Retro High OG Royal Reimagined",
+  "alt": "1_royal",
+  "category": "sneaker",
+  "brand": "Jordan"
+},
+{
+  "_id": {
+    "$oid": "65c4e592b55dc69473b009db"
+  },
+  "price": 148,
+  "name": "Dunk Low Dusty Olive",
+  "alt": "dunk_low_dusty_olive",
+  "category": "sneaker",
+  "brand": "Nike",
+  "image": "https://i.ibb.co/BjvhVsp/nike-dunk-low-dusty-oliveb.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e5a6b55dc69473b009dc"
+  },
+  "image": "https://i.ibb.co/TmZj5Cm/12-cherry.png",
+  "price": 190,
+  "name": "12 Retro Cherry",
+  "alt": "12_cherry",
+  "category": "sneaker",
+  "brand": "Jordan"
+},
+{
+  "_id": {
+    "$oid": "65c4e612b55dc69473b009dd"
+  },
+  "price": 107,
+  "name": "Dunk Low Wheat (2021/2023)",
+  "alt": "dunk_low_wheat",
+  "category": "sneaker",
+  "brand": "Nike",
+  "image": "https://i.ibb.co/v1nGyQp/dunk-low-wheat.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e63cb55dc69473b009de"
+  },
+  "price": 177,
+  "name": "Boost 350 V2 Bone",
+  "alt": "350_v2_bone",
+  "category": "sneaker",
+  "brand": "Yeezy",
+  "image": "https://i.ibb.co/MS7HVn6/350-v2-bone.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e64cb55dc69473b009df"
+  },
+  "price": 330,
+  "alt": "dunk_low_bxro",
+  "category": "sneaker",
+  "brand": "Nike",
+  "name": "Dunk Low Born X Raised ONE Block At A Time",
+  "image": "https://i.ibb.co/8dDg7F3/Born-Raised-Nike-SB-Dunk-Low-One-Block-at-a-Timeb.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e65cb55dc69473b009e0"
+  },
+  "price": 70,
+  "name": "Campus 00s Core Black",
+  "alt": "00_core",
+  "category": "sneaker",
+  "brand": "Adidas",
+  "image": "https://i.ibb.co/FBZzXfQ/adidas-originals-core-black-campus-00s.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e677b55dc69473b009e1"
+  },
+  "price": 101,
+  "name": "Foam RNR Carbon",
+  "alt": "foam_carbon",
+  "category": "sneaker",
+  "brand": "Yeezy",
+  "image": "https://i.ibb.co/GWBM8hG/foamrnnrcarbon.png"
+},
+{
+  "_id": {
+    "$oid": "65c4e687b55dc69473b009e2"
+  },
+  "price": 135,
+  "name": "1 Retro High OG Spider-Man Across the Spider-Verse",
+  "alt": "1_high_sm_spiderverse",
+  "category": "sneaker",
+  "brand": "Jordan",
+  "image": "https://i.ibb.co/Nx0sJDL/spider-man-across-the-spider-verse-x-air-jordan-1-high-red-blackb.png"
+}]

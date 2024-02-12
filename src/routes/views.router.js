@@ -5,17 +5,7 @@ import ProductManager from "../components/ProductManager.js"
 const product = new ProductManager()
 
 router.get("/", async (req, res) =>{
-    let allProducts = await product.getProduct()
-    res.render("home", {
-        title: "Backend | Handlebars",
-        products: allProducts
-    })
-})
-
-router.get('/realtimeproducts', (req, res) => {
-    res.render("realTimeProducts", {
-        title: "RealTime Products"
-    })
+    res.render("home")
 })
 
 router.get('/chat', (req, res) => {

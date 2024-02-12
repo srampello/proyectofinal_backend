@@ -3,6 +3,7 @@ import { engine } from "express-handlebars"
 import * as path from "path"
 import { Server } from "socket.io"
 import http from "http"
+import mongoose from "mongoose"
 
 import ProductRouter from "./routes/products.routes.js"
 import ProductManager from "./components/ProductManager.js";
@@ -10,12 +11,13 @@ import CartRouter from "./routes/cart.routes.js"
 import viewsRouter from "./routes/views.router.js"
 import __dirname from "./utils.js"
 
-const product = new ProductManager()
-
 const app = express()
 const PORT = 8080
 const httpServer = http.createServer(app)
 const io = new Server(httpServer)
+
+mongoose.connect("mongodb://localhost:27017/iceclub")
+//mongoose.connect("mongodb+srv://iceclub:TBdRKwSFvALdREkM@iceclubcluster.ywraoaj.mongodb.net/?retryWrites=true&w=majority")
 
 httpServer.listen(PORT, () => {
     console.log(`App running at port ${PORT}`)
@@ -36,12 +38,13 @@ app.use("/", express.static(__dirname + "/public"))
 app.use("/", viewsRouter)
 app.use("/api/products", ProductRouter);
 app.use('/api/cart', CartRouter);
+app.use((req, res, next) => {
+    res.render("404")
+})
 
 //Socket.io
 io.on("connection", async (socket) => {
     console.log("Client connected");
-
-    socket.emit("server:products", await ProductManager.readProducts())
 
     // socket.on('event', function)
 
@@ -53,5 +56,4 @@ io.on("connection", async (socket) => {
         io.emit("message", msg)
     })
 
-    //socket.emit("recibirProductos", product.getProduct());
   });
