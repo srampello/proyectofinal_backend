@@ -1,6 +1,31 @@
 import {promises as fs} from "fs"
 import { nanoid } from "nanoid"
+import { productModel } from "../models/product.model.js"
 
+export default class ProductManager{
+    static async getAll(){
+        return productModel.find().lean()
+    }
+
+    static async getById(id){
+        return productModel.findOne({_id: id}).lean()
+    }
+
+    static async add(name, price, brand, category, image, alt){
+        return new productModel({name, price, brand, category, image, alt}).save()
+    }
+
+    static async update(id, data){
+        return productModel.findOneAndUpdate({_id: id}, data)
+    }
+
+    static async remove(id){
+        return productModel.findByIdAndDelete(id)
+    }
+}
+
+
+/*
 export default class ProductManager {
     constructor(){
         this.path = "./src/models/products.json"
@@ -72,3 +97,4 @@ export default class ProductManager {
         return "Non-existent product to be eliminated"
     }
 }
+*/

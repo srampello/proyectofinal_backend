@@ -1,0 +1,10 @@
+<h1>Products List</h1>
+<ul>
+    {{#each products}}
+        <li style="list-style: none;"><h2>{{this.name}}</h2></li>
+        <li style="list-style: none;"><h3>{{this.brand}}</h3></li>
+        <li style="list-style: none;"><p>${{this.price}}</p></li>
+        <li style="list-style: none;"><img src={{this.image}} alt=""></li>
+        <li style="list-style: none;"><a href="/api/products/{{this._id}}">{{this.name}}</a></li>
+    {{/each}}
+</ul>
