@@ -16,8 +16,9 @@ const PORT = 8080
 const httpServer = http.createServer(app)
 const io = new Server(httpServer)
 
-mongoose.connect("mongodb://localhost:27017/iceclub")
-//mongoose.connect("mongodb+srv://iceclub:TBdRKwSFvALdREkM@iceclubcluster.ywraoaj.mongodb.net/?retryWrites=true&w=majority")
+//mongoose.connect("mongodb://localhost:27017/iceclub")
+mongoose.connect("mongodb+srv://iceclub:TBdRKwSFvALdREkM@iceclubcluster.ywraoaj.mongodb.net/iceclub?retryWrites=true&w=majority")
+
 
 httpServer.listen(PORT, () => {
     console.log(`App running at port ${PORT}`)
