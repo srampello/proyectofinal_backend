@@ -6,7 +6,6 @@ import http from "http"
 import mongoose from "mongoose"
 
 import ProductRouter from "./routes/products.routes.js"
-import ProductManager from "./components/ProductManager.js";
 import CartRouter from "./routes/cart.routes.js"
 import viewsRouter from "./routes/views.router.js"
 import __dirname from "./utils.js"
@@ -44,17 +43,27 @@ app.use((req, res, next) => {
 })
 
 //Socket.io
-io.on("connection", async (socket) => {
-    console.log("Client connected");
+let socketsConnected = new Set()
 
-    // socket.on('event', function)
+io.on('connection', onConnected)
 
-    socket.on("disconnect", () => {
-        console.log("A user disconnected")
+function onConnected(socket){
+    console.log("New client connected: " + socket.id);
+    socketsConnected.add(socket.id)
+
+    io.emit('client-total', socketsConnected.size)
+
+    socket.on('disconnect', () =>{
+        console.log("Client disconnected" + socket.id)
+        socketsConnected.delete(socket.id)
+        io.emit('client-total', socketsConnected.size)
     })
 
-    socket.on("message", (msg) => {
-        io.emit("message", msg)
-    })
+    socket.on('message', (data) => {
+        socket.broadcast.emit('chat-message', data)
+      })
 
-  });
+    socket.on('feedback', (data) => {
+        socket.broadcast.emit('feedback', data)
+    })
+}

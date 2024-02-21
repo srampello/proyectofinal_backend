@@ -1,45 +1,45 @@
 import { Router } from "express"
 import ProductManager from "../components/ProductManager.js"
 import { productModel } from "../models/product.model.js"
+import { paginate, paginateSubDocs } from "mongoose-paginate-v2"
 const ProductRouter = Router()
-//const product = new ProductManager()
+const product = new ProductManager()
 
-//Get all products MongoDB
+//! GET
+//* /api/products
+//* /api/products?limit=?page=?sort=
 ProductRouter.get("/", async (req, res) => {
-    let products;
-    products = await ProductManager.getAll()
-    res.render("products", {products})
-    /*
-    try{
-        let products = await productModel.find()
-        res.status(200).send({
-            status: 200,
-            result: "sucess",
-            payload: products
-        })
-    } catch(error){
-        console.log("Cannot get users from Mongo: " + error)
-        res.status(500).send({
-            status:500,
-            result:"error",
-            error:"Error getting data from DB"
-        })
-    }
-    */
+    let limit = req.query.limit || 6
+    let page = req.query.page || 1
+    let sort = req.query.sort || "name"
+    let products = await productModel.paginate({},{limit, page, sort ,lean:true})
+    products.prevLink = products.hasPrevPage?`http://localhost:8080/api/products?page=${products.prevPage}`:'';
+    products.nextLink = products.hasNextPage?`http://localhost:8080/api/products?page=${products.nextPage}`:'';
+    products.isValid = !(page<=0 || page>products.totalPages)
+    products
+        ? res.status(200).render("products", products)
+        : res.status(400).render("404")
 })
 
-ProductRouter.get("/:id", async (req, res) => {
-    let id = req.params.id
+//* /api/product/brand/:bid?limit=?page=?sort=
+ProductRouter.get("/brand/:bid", async(req, res) => {
+    let limit = req.query.limit || 6
+    let page = req.query.page || 1
+    let sort = req.query.sort || "name"
+    const {bid} = req.params
+    const products = await productModel.paginate({brand: bid}, {limit, page, sort, lean: true})
+    products
+        ? res.render("products", products)
+        : res.status(400).render("404")
+})
 
-    if(!id){
-        res.redirect("/api/products")
-    }
-
-    let product = await ProductManager.getById(id)
+//* /api/products/:id
+ProductRouter.get("/:pid", async (req, res) => {
+    const product = await productModel.findById(req.params.pid)
     if(!product){
-        res.render("404")
+        res.status(400).render("404")
     }else{
-        res.render("product", {
+        res.status(200).render("product", {
             name: product.name,
             brand: product.brand,
             price: product.price,
@@ -47,54 +47,36 @@ ProductRouter.get("/:id", async (req, res) => {
             alt: product.alt
         })
     }
-    
 })
-/*
-ProductRouter.get("/:pid", async(req, res) => {
-    let {pid} = req.params
-    
-    try{
-        let result = await productModel.find({_id:pid})
-        res.status(200).send({
-            status:200,
-            result:"sucess",
-            payload:result
-        })
-    } catch(error){
-        console.log("Cannot find product on Mongo: " + error)
-        res.status(500).send({
-            status:500,
-            result:"error",
-            error:"Error finding product on DB"
-        })
-    }
-})
-*/
-/*
-ProductRouter.get("/", async(req, res) => {
-    let limit = parseInt(req.query.limit)
-    if(!limit) return res.send(await product.readProducts())
-    let limitProduct = await product.getLimitProduct(limit)
-    res.status(200).send(limitProduct)
-})
-*/
 
-/*
+//! POST
+//* /api/products (newProduct)
 ProductRouter.post("/", async (req, res) => {
-    let newProduct = req.body
-    res.status(200).send(await product.addProducts(newProduct))
+    const {body} = req.body
+    const newProduct = await productModel.create(body)
+    newProduct
+        ? res.status(200).json({"success": "product added with ID " + newProduct._id})
+        : res.status(400).json({"error": "there was an error, please verify the body content match the schema"})
 })
 
+//* /api/products/:pid (updateProduct)
 ProductRouter.put("/:pid", async (req, res) => {
-    let id = req.params.pid
-    let updateProduct = req.body
-    res.status(200).send(await product.updateProductById(id, updateProduct))
+    const {id} = req.params
+    const {body} = req.body
+    const wasUpdated = await product.updateProductById(id, body)
+    wasUpdated
+        ? res.status(200).json({"succes" : "product updated"})
+        : res.status(400).json({"error" : "product not found or invalid body content"})
 })
 
+//! DELETE
+//* /api/products/:pid
 ProductRouter.delete("/:pid", async(req, res) => {
-    let id = req.params.pid
-    res.status(200).send(await product.deleteProductById(id))
+    const {id} = req.params
+    const wasDeleted = await product.deleteProductById(id)
+    wasDeleted
+        ? res.status(200).json({"success" : "product successfully removed"})
+        : res.status(400).json({"error" : "product not found"})
 })
-*/
 
 export default ProductRouter

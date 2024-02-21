@@ -9,7 +9,7 @@ router.get("/", async (req, res) =>{
 })
 
 router.get('/chat', (req, res) => {
-    res.render("chat", {
+    res.render("ichat", {
         title: "chat socket"
     })
 })
