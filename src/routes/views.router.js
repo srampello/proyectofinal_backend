@@ -5,6 +5,7 @@ import ProductManager from "../components/ProductManager.js"
 const product = new ProductManager()
 
 router.get("/", async (req, res) =>{
+    console.log(req.session)
     res.render("home")
 })
 
@@ -13,6 +14,5 @@ router.get('/chat', (req, res) => {
         title: "chat socket"
     })
 })
-
 
 export default router;

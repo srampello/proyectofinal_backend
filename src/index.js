@@ -4,10 +4,13 @@ import * as path from "path"
 import { Server } from "socket.io"
 import http from "http"
 import mongoose from "mongoose"
+import session from "express-session"
+import cookieParser from "cookie-parser"
 
 import ProductRouter from "./routes/products.routes.js"
 import CartRouter from "./routes/cart.routes.js"
 import viewsRouter from "./routes/views.router.js"
+import AuthRouter from "./routes/auth.routes.js"
 import __dirname from "./utils.js"
 
 const app = express()
@@ -18,7 +21,6 @@ const io = new Server(httpServer)
 //mongoose.connect("mongodb://localhost:27017/iceclub")
 mongoose.connect("mongodb+srv://iceclub:TBdRKwSFvALdREkM@iceclubcluster.ywraoaj.mongodb.net/iceclub?retryWrites=true&w=majority")
 
-
 httpServer.listen(PORT, () => {
     console.log(`App running at port ${PORT}`)
 })
@@ -26,6 +28,12 @@ httpServer.listen(PORT, () => {
 //Middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
+app.use(session({
+    secret: "secretCode",
+    resave: true,
+    saveUninitialized: true
+}))
+app.use(cookieParser())
 
 //Handlebars
 app.engine("handlebars", engine())
@@ -38,6 +46,7 @@ app.use("/", express.static(__dirname + "/public"))
 app.use("/", viewsRouter)
 app.use("/api/products", ProductRouter);
 app.use('/api/cart', CartRouter);
+app.use('/api/auth', AuthRouter)
 app.use((req, res, next) => {
     res.render("404")
 })
