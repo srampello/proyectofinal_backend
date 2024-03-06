@@ -1,7 +1,28 @@
-<h1>Session</h1>
-
-<form action="/login" method="POST">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" name="iniciar" value="Iniciar sesion" id="">
-</form>
+<div class="row w-100">
+  <div class="col-7 col-md-5 col-lg-4 col-xl-3 mx-auto">
+    <div class="card mt-5 bg-dark text-white rounded">
+      <div class="card-header text-center pt-3">
+        <h1 class="h4 text-white text-center">Account Login</h1>
+      </div>
+      <img class="mx-auto d-block w-50" src="https://i.ibb.co/ykLMktY/iceclublogo.png" alt="Logo"/>
+      <div class="card-body">
+        <form action="/api/auth/login" method="POST">
+          <div class="mb-3">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control bg-dark text-white" name="email" placeholder="Email" autofocus/>
+          </div>
+          <div class="mb-3">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control bg-dark text-white" name="password" placeholder="Password"/>
+            <p class="text-center pt-2"><a href="/api/auth/forgotpass" class="text-info">Forgot Password?</a></p>
+          </div>
+          <div class="d-grid">
+            <button class="btn btn-outline-success btn-block">Signin</button>
+          </div>
+          
+        </form>
+      </div>
+      <p class="text-center">Don't Have an Account? <a href="/api/auth/register" class="text-info">Register</a></p>
+    </div>
+  </div>
+</div>

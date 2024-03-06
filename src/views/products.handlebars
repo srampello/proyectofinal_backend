@@ -1,68 +1,57 @@
 <!-- BOOTSTRAP  -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-<div class="main">
-    <aside class="bg-black col-12 p-2">
-        <h2>Sneakers</h2>
-            <div class="col-12">
-                <h3>Price</h3>
-                <input type="range" min="0" max="1000" class="w-100">
-                <h4></h4>
-            </div>
-            <div class="col-12">
-                <h3>Brand</h3>
-                <select name="" id="" class="w-100">
-                    <option value="Jordan">Jordan</option>
-                    <option value="Nike">Nike</option>
-                    <option value="Yeezy">Yeezy</option>
-                    <option value="Adidas">Adidas</option>
-                </select>
-            </div>
-    </aside>
-</div>
-
-
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="container">
-                
-            </div>
-        </div>
-    </div>
-    <div class="row">
-    <div class="col">
-        <h1>Products List</h1>
-        <div>
-            {{#if hasPrevPage}}
-                <a href="{{this.prevLink}}"> << Anterior</a>
-            {{/if}}
-            &nbsp;
-            {{this.page}}
-            &nbsp;
-            {{#if hasNextPage}}
-                <a href="{{this.nextLink}}"> Siguiente >> </a>
-            {{/if}}
-        </div>
-        <ul>
-            {{#each docs}}
-                <div class="card">
-                    <img src={{this.image}} alt={{this.alt}} class="card-img-top">
-                    <div class="card-body">
-                        <h2 class="card-title">{{this.name}}</h2>
-                        <h3 class="card-text">{{this.brand}}</h3>
-                        <p>U$D {{this.price}}</p>
-                        <a class="btn btn-primary" href="/api/products/{{this._id}}">{{this.name}}</a>
-                    </div>
+    <ul class="d-flex flex-wrap justify-content-center gap-3">
+        {{#each docs}}
+            <div class="card">
+                <img src={{this.image}} alt={{this.alt}} class="card-img-top">
+                <div class="card-body">
+                    <h2 class="card-title">{{this.name}}</h2>
+                    <h3 class="card-text">{{this.brand}}</h3>
+                    <p>U$D {{this.price}}</p>
+                    <a class="btn btn-primary" href="/api/products/{{this._id}}">{{this.name}}</a>
                 </div>
-            {{/each}}
-        </ul>
-    </div>
-    </div>
-    
+            </div>
+        {{/each}}
+    </ul>
 </div>
 
 
+
+<!-- 
+<div class="row">
+    <div class="bg-black col-12 col-md-3 col-lg-2 p-2">
+        <h2>Sneakers</h2>
+        <div class="col-12">
+            <h3>Price</h3>
+            <input type="range" min="0" max="1000" class="w-100">
+            <h4></h4>
+        </div>
+        <div class="col-12">
+            <h3>Brand</h3>
+            <select name="" id="" class="w-100">
+                <option value="Jordan">Jordan</option>
+                <option value="Nike">Nike</option>
+                <option value="Yeezy">Yeezy</option>
+                <option value="Adidas">Adidas</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-12 p-2 text-center">
+        {{#if hasPrevPage}}
+            <a href="{{this.prevLink}}"> << Anterior</a>
+        {{/if}}
+        &nbsp;
+        {{this.page}}
+        &nbsp;
+        {{#if hasNextPage}}
+            <a href="{{this.nextLink}}"> Siguiente >> </a>
+        {{/if}}
+
+        -->
+            
+        
 
 
 <!-- SCRIPTS -->
@@ -79,26 +68,15 @@
         display: flex;
     }
 
-    .aside{
-        margin: 1%;
-        background-color: red;
-        width: 20%;
-    }
-
-    .section{
-        margin: 1%;
-        background-color: blue;
-        width: 80%;
-    }
-
     ul{
+        width: 18rem;
+    }
+/*
+    ul{
+        width: 18rem;
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         justify-content: center;
-    }
-
-    div{
-        width: 18rem;
-    }
+    }*/
 </style>

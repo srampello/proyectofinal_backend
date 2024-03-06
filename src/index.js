@@ -6,12 +6,15 @@ import http from "http"
 import mongoose from "mongoose"
 import session from "express-session"
 import cookieParser from "cookie-parser"
+import flash from 'connect-flash'
+import passport from "passport"
 
 import ProductRouter from "./routes/products.routes.js"
 import CartRouter from "./routes/cart.routes.js"
 import viewsRouter from "./routes/views.router.js"
 import AuthRouter from "./routes/auth.routes.js"
 import __dirname from "./utils.js"
+import './config/passport.js'
 
 const app = express()
 const PORT = 8080
@@ -25,6 +28,7 @@ httpServer.listen(PORT, () => {
     console.log(`App running at port ${PORT}`)
 })
 
+
 //Middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
@@ -34,6 +38,19 @@ app.use(session({
     saveUninitialized: true
 }))
 app.use(cookieParser())
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash());
+
+// Global Variables
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    res.locals.error = req.flash("error");
+    res.locals.user = req.user || null;
+    next();
+  });
+  
 
 //Handlebars
 app.engine("handlebars", engine())

@@ -1,0 +1,36 @@
+<nav class="navbar navbar-dark bg-dark sticky-top d-flex">
+    <div class="align-self-center me-auto"><a href="/" class="me-auto"><img src="https://i.ibb.co/ykLMktY/iceclublogo.png" alt="iceClubLogo" class="" style="width: 100px;"/></a></div>
+    {{#if user}}
+        <div class="align-self-center me-2">
+            <a href="/profile"><button class="navbar-toggler" type="button" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation" style="height: fit-content;"><i class="fa-regular fa-user"></i></button></a></div>
+    {{/if}}
+    <div class="align-self-center me-2">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation" style="height: fit-content;"><span class="navbar-toggler-icon"></span></button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title p-2" id="offcanvasDarkNavbarLabel"><img src="https://i.ibb.co/ykLMktY/iceclublogo.png" alt="iceClubLogo" class="w-25"/></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item m-2">
+                        <a href="/" class="btn btn-outline-secondary">Home</a>
+                    </li>
+                    <li class="nav-item m-2 dropdown">
+                        <a href="/api/products" class="btn btn-outline-secondary" >Sneakers</a>
+                    </li>
+                    {{#if user}}
+                        <li class="nav-item m-2 dropdown">
+                            <a href="/api/auth/logout" class="btn btn-outline-danger">Logout</a>
+                        </li>
+                    {{else}}
+                        <li class="nav-item m-2 dropdown">
+                            <a href="/api/auth/login" class="btn btn-outline-success" >Login / Create Account</a>
+                        </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="bg-dark text-white text-center mb-1 p-0" >Horario de atención: 12:00 - 19:00hs</div>

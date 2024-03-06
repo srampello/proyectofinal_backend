@@ -1,66 +1,70 @@
 import User from '../models/user.model.js'
-import bcrypt from 'bcryptjs'
-import { createAccessToken } from '../libs/jwt.js'
+import passport from 'passport'
+import userModel from '../models/user.model.js'
+
+export const renderRegisterForm = (req, res) => res.render('register')
+export const renderSigninForm = (req, res) => res.render("login");
 
 export const register = async (req, res) => {
-    const {username, email, password} = req.body
-    try{
-        const passwordHash = await bcrypt.hash(password, 10)
-
-        const newUser = new User({
+    const errors = []
+    const {username, email, password, confirm_password} = req.body
+    if(password !== confirm_password){
+        errors.push({text: 'Passwords dont match'})
+    }
+    if(password.length < 8){
+        errors.push({text: 'Passwords must be at least 8 characters'})
+    }
+    
+    if(errors.length > 0){
+        res.render('register', {
+            errors,
             username,
             email,
-            password: passwordHash
-        }) 
-    
-        const userSaved = await newUser.save()
-        const token = await createAccessToken({id: userSaved._id})
-        res.cookie('token', token)
-        res.json(userSaved)
-        //res.send('registrando')
-    } catch(error){
-        res.status(400).json({message: error.message})
+            password,
+            confirm_password
+        })
+    }else{
+        const emailUser = await userModel.findOne({email: email})
+        if(emailUser){
+            req.flash('error_msg', 'The email is already in use')
+            res.redirect('/api/auth/register')
+        }else{
+            const newUser = new User({username, email, password})
+            newUser.password = await newUser.encryptPassword(password)
+            await newUser.save()
+            req.flash('success_msg', 'You are registered')
+            res.redirect('/api/auth/login')
+        }
     }
 }
 
-export const login = async (req, res) => {
-    const {username, password} = req.body
-    try{
-        const { email, password } = req.body;
-        const userFound = await User.findOne({ email });
+export const login = passport.authenticate('login', {
+    failureRedirect: "/api/auth/login",
+    successRedirect: "/",
+    failureFlash: true
+});
 
-        if (!userFound)
-            return res.status(400).json({
-        message: ["The email does not exist"],
+export const logout = async (req, res, next) => {
+    await req.logout((err) => {
+      if (err) return next(err);
+      req.flash("success_msg", "You are logged out now.");
+      res.redirect("/");
     });
+  };
 
-    const isMatch = await bcrypt.compare(password, userFound.password);
-    if (!isMatch) {
-        return res.status(400).json({
-            message: ["The password is incorrect"],
-        });
+export const forgotPass = async(req, res, next) => {
+    //* get user based
+    const {email} = req.body
+    const user = await userModel.findOne({email: email})
+    if(!user){
+        req.flash('error_msg', 'There is no account created with that email')
+        res.redirect('/api/auth/forgotpass')
     }
-
-    const token = await createAccessToken({
-        id: userFound._id,
-        username: userFound.username,
-    });
-    res.cookie('token', token)
-    res.json({
-        id: userFound._id,
-        username: userFound.username,
-        email: userFound.email,
-    });
-    } catch(error){
-        res.status(500).json({message: error.message})
-    }
+    //* generate random reset token
 }
 
-export const logOut = (req, res) => {
-    res.cookie('token', "", {
-        expires: new Date(0)
-    })
-    return res.sendStatus(200)
+export const resetPass = async (req, res, next) => {
+
 }
 
 export const profile = async (req, res) => {
