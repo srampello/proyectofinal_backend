@@ -9,23 +9,27 @@ import cookieParser from "cookie-parser"
 import flash from 'connect-flash'
 import passport from "passport"
 
+import { config } from "dotenv"
+config()
+
 import ProductRouter from "./routes/products.routes.js"
 import CartRouter from "./routes/cart.routes.js"
 import viewsRouter from "./routes/views.router.js"
 import AuthRouter from "./routes/auth.routes.js"
 import __dirname from "./utils.js"
 import './config/passport.js'
+import { isLoggedIn } from "./middlewares/validate.auth.middlewares.js"
 
 const app = express()
-const PORT = 8080
 const httpServer = http.createServer(app)
 const io = new Server(httpServer)
 
 //mongoose.connect("mongodb://localhost:27017/iceclub")
-mongoose.connect("mongodb+srv://iceclub:TBdRKwSFvALdREkM@iceclubcluster.ywraoaj.mongodb.net/iceclub?retryWrites=true&w=majority")
+//mongoose.connect("mongodb+srv://iceclub:TBdRKwSFvALdREkM@iceclubcluster.ywraoaj.mongodb.net/iceclub?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGO_SRV)
 
-httpServer.listen(PORT, () => {
-    console.log(`App running at port ${PORT}`)
+httpServer.listen(process.env.PORT, () => {
+    console.log(`App running at port ${process.env.PORT}`)
 })
 
 
@@ -64,9 +68,36 @@ app.use("/", viewsRouter)
 app.use("/api/products", ProductRouter);
 app.use('/api/cart', CartRouter);
 app.use('/api/auth', AuthRouter)
+
+//* Google Auth
+app.get('/api/auth/google',
+    passport.authenticate('google', {
+        scope: ['email', 'profile']
+    }
+))
+
+app.get('/api/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/api/auth/protected',
+        failureRedirect: '/api/auth/google/failure'
+    })
+)
+
+app.get('/api/auth/google/failure', (req, res) => {
+    res.send("Somethig went wrong!")
+})
+
+app.get('/api/auth/protected', isLoggedIn ,(req, res) => {
+    let name = req.user.displayName()
+    res.send(`Hello ${name}`)
+})
+
+
 app.use((req, res, next) => {
     res.render("404")
 })
+
+
 
 //Socket.io
 let socketsConnected = new Set()

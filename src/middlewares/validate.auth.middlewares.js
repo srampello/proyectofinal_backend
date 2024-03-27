@@ -6,3 +6,6 @@ export const isAuthenticated = (req, res, next) => {
     res.redirect('/api/auth/login')
 }
 
+export const isLoggedIn = (req, res, next) => {
+    req.user ? next() : res.sendStatus(401)
+}
